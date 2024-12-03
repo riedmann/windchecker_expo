@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   webview: {
     width: "100%",
-    height: 300,
+    height: 400,
   },
   link: {
     color: "#2196F3",

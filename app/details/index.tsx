@@ -13,7 +13,7 @@ const SCREEN_HEIGHT = 300; // You can adjust this value
 
 export default function ImageScreen() {
   const { data, loading } = useContext(DataContext);
-  const imageItems = data.filter((item) => item.type === "image");
+  const imageItems = data.filter((item) => item.art === "image");
 
   if (loading) {
     return (

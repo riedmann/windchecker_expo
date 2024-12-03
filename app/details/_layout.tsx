@@ -9,6 +9,10 @@ import { Item } from "@/types";
 export const DataContext = createContext<{
   data: Item[];
   loading: boolean;
+  location?: {
+    longitude: string;
+    latitude: string;
+  };
 }>({ data: [], loading: true });
 
 export default function DetailsLayout() {
@@ -24,6 +28,11 @@ export default function DetailsLayout() {
           `https://api.riedmann.rocks/windchecker/items/item?filter[spots][eq]=${params.id}`
         );
         const result = await response.json();
+        result.data.location = {
+          longitude: params.longitude,
+          latitude: params.latitude,
+        };
+
         setData(result.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -36,7 +45,16 @@ export default function DetailsLayout() {
   }, [params.id]);
 
   return (
-    <DataContext.Provider value={{ data, loading }}>
+    <DataContext.Provider
+      value={{
+        data,
+        loading,
+        location: {
+          longitude: params.longitude as string,
+          latitude: params.latitude as string,
+        },
+      }}
+    >
       <Tabs
         screenOptions={{
           tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
