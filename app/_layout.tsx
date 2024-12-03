@@ -36,15 +36,19 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen
           name="(tabs)"
-          options={{ headerShown: true, headerTitle: "Alle Spots" }}
+          options={{ headerShown: true, headerTitle: "Spots" }}
         />
         <Stack.Screen
           name="details"
-          options={{
+          //@ts-ignore
+          options={({ route }) => ({
             headerBackButtonMenuEnabled: true,
             headerShown: true,
-            headerTitle: "Spot Details",
-          }}
+            headerTitle:
+              route.params && "name" in route.params
+                ? route.params.name
+                : "Spot Details",
+          })}
         />
         <Stack.Screen name="+not-found" />
       </Stack>

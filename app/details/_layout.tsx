@@ -40,8 +40,8 @@ export default function DetailsLayout() {
     <DataContext.Provider value={{ data, loading }}>
       <Tabs
         screenOptions={{
-          headerShown: false,
           tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+          headerShown: false,
         }}
       >
         <Tabs.Screen
@@ -81,7 +81,7 @@ export default function DetailsLayout() {
           }}
         />
         <Tabs.Screen
-          name="image"
+          name="chart"
           options={{
             title: "Chart",
             tabBarIcon: ({ color }) => (

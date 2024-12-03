@@ -8,13 +8,6 @@ const Spot: React.FC<SpotData> = ({ name, description, id, issummer }) => {
   const router = useRouter();
 
   const handlePress = () => {
-    console.log("Spot clicked:", {
-      name,
-      description,
-      id,
-      issummer,
-    });
-
     router.push({
       pathname: "/details",
       params: {

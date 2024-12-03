@@ -33,7 +33,7 @@ export default function SpotsScreen() {
         "https://api.riedmann.rocks/windchecker/items/spots?fields=*.*.*&status=published&sort=name"
       );
       const data = await response.json();
-      console.log("data", data);
+
       setSpots(data.data);
     } catch (error) {
       console.error("Error fetching spots:", error);
