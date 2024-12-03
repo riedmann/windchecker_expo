@@ -3,6 +3,7 @@ import { ThemedView } from "@/components/ThemedView";
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Dimensions } from "react-native";
 import { LineChart } from "react-native-chart-kit";
+import { Line } from "react-native-svg";
 
 interface WeatherChartProps {
   latitude: string;
@@ -55,10 +56,22 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
     );
   }
 
+  const getDayName = (dateStr: string) => {
+    const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const date = new Date(dateStr);
+    return days[date.getDay()];
+  };
+
   const chartData = {
-    labels: data.data_1h.time.map(
-      (time: string) => time.split("T")[1]?.substring(0, 2) + "h"
-    ),
+    labels: [
+      ...data.data_1h.time
+        .filter(
+          (time: string, index: number) =>
+            index === 0 ||
+            !time.startsWith(data.data_1h.time[index - 1].split(" ")[0])
+        )
+        .map((time: string) => getDayName(time.split(" ")[0])),
+    ],
     datasets: [
       {
         data: data.data_1h.windspeed,
@@ -81,9 +94,47 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
           backgroundGradientTo: "#ffffff",
           decimalPlaces: 1,
           color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
-          style: {
-            borderRadius: 2,
+
+          propsForVerticalLabels: {
+            fontSize: 10,
           },
+          horizontalOffset: 30,
+        }}
+        withHorizontalLines={true}
+        withVerticalLines={false}
+        withDots={false}
+        withShadow={false}
+        decorator={() => {
+          const dayChangeIndexes = data.data_1h.time
+            .map((time: string, index: number) =>
+              index > 0 &&
+              !time.startsWith(data.data_1h.time[index - 1].split(" ")[0])
+                ? index
+                : null
+            )
+            .filter((index: any) => index !== null);
+
+          return (
+            <>
+              {dayChangeIndexes.map((index: any, i: any) => {
+                const x =
+                  (index / data.data_1h.windspeed.length) *
+                    (Dimensions.get("window").width - 64) +
+                  16;
+                return (
+                  <Line
+                    key={i}
+                    x1={x}
+                    y1={16}
+                    x2={x}
+                    y2={220 - 16}
+                    stroke="rgba(0, 0, 0, 0.2)"
+                    strokeWidth="1"
+                  />
+                );
+              })}
+            </>
+          );
         }}
         bezier
         style={styles.chart}
