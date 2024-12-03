@@ -6,6 +6,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { DataContext } from "./_layout";
 import { ZoomableImage } from "../components/ZoomableImage";
+import { ItemView } from "../components/ItemView";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = 300; // You can adjust this value
@@ -26,19 +27,7 @@ export default function ImageScreen() {
     <ScrollView>
       <ThemedView style={styles.container}>
         {imageItems.map((item: any) => (
-          <ThemedView key={item.id} style={styles.itemContainer}>
-            <ThemedText style={styles.title}>{item.name}</ThemedText>
-
-            {item.type === "image" && <ZoomableImage url={item.url} />}
-
-            {item.type === "iframe" && (
-              <WebView
-                source={{ uri: item.url }}
-                style={styles.webview}
-                nestedScrollEnabled={true}
-              />
-            )}
-          </ThemedView>
+          <ItemView key={item.id} item={item} />
         ))}
       </ThemedView>
     </ScrollView>

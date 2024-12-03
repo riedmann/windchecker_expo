@@ -18,5 +18,7 @@ export interface SpotData {
   status?: string;
   created_by?: number;
   created_on?: string;
+  longitude?: number;
+  latitude?: number;
   onPress?: () => void;
 }

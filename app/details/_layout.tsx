@@ -24,7 +24,6 @@ export default function DetailsLayout() {
           `https://api.riedmann.rocks/windchecker/items/item?filter[spots][eq]=${params.id}`
         );
         const result = await response.json();
-
         setData(result.data);
       } catch (error) {
         console.error("Error fetching data:", error);

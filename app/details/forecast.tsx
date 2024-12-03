@@ -5,6 +5,7 @@ import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
 import { DataContext } from "./_layout";
 import { ZoomableImage } from "../components/ZoomableImage";
+import { ItemView } from "../components/ItemView";
 
 export default function ForecastScreen() {
   const { data, loading } = useContext(DataContext);
@@ -24,19 +25,7 @@ export default function ForecastScreen() {
     <ScrollView>
       <ThemedView style={styles.container}>
         {imageItems.map((item: any) => (
-          <ThemedView key={item.id} style={styles.itemContainer}>
-            <ThemedText style={styles.title}>{item.name}</ThemedText>
-
-            {item.type === "image" && <ZoomableImage url={item.url} />}
-
-            {item.type === "iframe" && (
-              <WebView
-                source={{ uri: item.url }}
-                style={styles.webview}
-                nestedScrollEnabled={true}
-              />
-            )}
-          </ThemedView>
+          <ItemView key={item.id} item={item} />
         ))}
       </ThemedView>
     </ScrollView>

@@ -4,7 +4,14 @@ import { useRouter } from "expo-router";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SpotData } from "@/types";
 
-const Spot: React.FC<SpotData> = ({ name, description, id, issummer }) => {
+const Spot: React.FC<SpotData> = ({
+  name,
+  description,
+  id,
+  issummer,
+  longitude,
+  latitude,
+}) => {
   const router = useRouter();
 
   const handlePress = () => {
@@ -14,6 +21,8 @@ const Spot: React.FC<SpotData> = ({ name, description, id, issummer }) => {
         id: id,
         name: name,
         description: description,
+        longitude: longitude,
+        latitude: latitude,
       },
     });
   };
