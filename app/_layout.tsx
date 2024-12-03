@@ -34,10 +34,17 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: true, headerTitle: "Alle Spots" }}
+        />
         <Stack.Screen
           name="details"
-          options={{ headerBackButtonMenuEnabled: true, headerShown: true }}
+          options={{
+            headerBackButtonMenuEnabled: true,
+            headerShown: true,
+            headerTitle: "Spot Details",
+          }}
         />
         <Stack.Screen name="+not-found" />
       </Stack>

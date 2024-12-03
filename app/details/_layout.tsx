@@ -40,6 +40,7 @@ export default function DetailsLayout() {
     <DataContext.Provider value={{ data, loading }}>
       <Tabs
         screenOptions={{
+          headerShown: false,
           tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         }}
       >
