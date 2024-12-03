@@ -1,8 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { useRouter } from "expo-router";
-
-import { IconSymbol } from "@/components/ui/IconSymbol";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { SpotData } from "@/types";
 
 const Spot: React.FC<SpotData> = ({ name, description, id, issummer }) => {
@@ -33,9 +32,9 @@ const Spot: React.FC<SpotData> = ({ name, description, id, issummer }) => {
           <Text style={styles.name}>{name}</Text>
           <Text style={styles.description}>{description}</Text>
         </View>
-        <IconSymbol
+        <MaterialCommunityIcons
           size={24}
-          name={issummer ? "sun.max.fill" : "snowflake"}
+          name={issummer ? "white-balance-sunny" : "snowflake"}
           color={issummer ? "#FFB800" : "#00A5FF"}
         />
       </View>

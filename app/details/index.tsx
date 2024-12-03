@@ -1,24 +1,52 @@
-import { StyleSheet } from "react-native";
-import { useLocalSearchParams } from "expo-router";
-import { ThemedText } from "@/components/ThemedText";
+import React, { useContext } from "react";
+import { StyleSheet, Image, ScrollView, Dimensions } from "react-native";
+import ImageZoom from "react-native-image-pan-zoom";
+import { WebView } from "react-native-webview";
 import { ThemedView } from "@/components/ThemedView";
+import { ThemedText } from "@/components/ThemedText";
+import { DataContext } from "./_layout";
 
-export default function DetailsScreen() {
-  const params = useLocalSearchParams();
+const SCREEN_WIDTH = Dimensions.get("window").width;
+const SCREEN_HEIGHT = 300; // You can adjust this value
+
+export default function ImageScreen() {
+  const { data, loading } = useContext(DataContext);
+  const imageItems = data.filter((item) => item.type === "image");
+
+  if (loading) {
+    return (
+      <ThemedView style={styles.container}>
+        <ThemedText>Loading...</ThemedText>
+      </ThemedView>
+    );
+  }
 
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="title">{params.name}</ThemedText>
-      <ThemedText>{params.description}</ThemedText>
+    <ScrollView>
+      <ThemedView style={styles.container}>
+        {imageItems.map((item: any) => (
+          <ThemedView key={item.id} style={styles.itemContainer}>
+            <ThemedText style={styles.title}>{item.name}</ThemedText>
 
-      {/* Debug section */}
-      <ThemedView style={styles.debugContainer}>
-        <ThemedText type="subtitle">Debug Info:</ThemedText>
-        <ThemedText>
-          {Object.entries(params).map(([key, value]) => `${key}: ${value}\n`)}
-        </ThemedText>
+            {item.type === "image" && (
+              <Image
+                source={{ uri: item.url }}
+                style={styles.image}
+                resizeMode="contain"
+              />
+            )}
+
+            {item.type === "iframe" && (
+              <WebView
+                source={{ uri: item.url }}
+                style={styles.webview}
+                nestedScrollEnabled={true}
+              />
+            )}
+          </ThemedView>
+        ))}
       </ThemedView>
-    </ThemedView>
+    </ScrollView>
   );
 }
 
@@ -28,11 +56,23 @@ const styles = StyleSheet.create({
     padding: 16,
     gap: 16,
   },
-  debugContainer: {
-    marginTop: 20,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: "#ccc",
+  itemContainer: {
+    marginBottom: 20,
     borderRadius: 8,
+    overflow: "hidden",
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 8,
+  },
+  image: {
+    width: SCREEN_WIDTH - 32,
+    height: SCREEN_HEIGHT,
+    backgroundColor: "#f0f0f0",
+  },
+  webview: {
+    width: "100%",
+    height: 300,
   },
 });

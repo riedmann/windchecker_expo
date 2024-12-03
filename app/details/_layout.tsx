@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import React, { createContext, useEffect, useState } from "react";
-import { IconSymbol } from "@/components/ui/IconSymbol";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useLocalSearchParams } from "expo-router";
@@ -46,27 +46,23 @@ export default function DetailsLayout() {
         <Tabs.Screen
           name="index"
           options={{
-            title: "Details",
+            title: "Webcam",
             tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="info.circle.fill" color={color} />
+              <MaterialCommunityIcons size={28} name="webcam" color={color} />
             ),
           }}
         />
-        <Tabs.Screen
-          name="image"
-          options={{
-            title: "Image",
-            tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="photo.fill" color={color} />
-            ),
-          }}
-        />
+
         <Tabs.Screen
           name="report"
           options={{
             title: "Report",
             tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="doc.text.fill" color={color} />
+              <MaterialCommunityIcons
+                size={28}
+                name="file-document"
+                color={color}
+              />
             ),
           }}
         />
@@ -75,7 +71,24 @@ export default function DetailsLayout() {
           options={{
             title: "Forecast",
             tabBarIcon: ({ color }) => (
-              <IconSymbol size={28} name="cloud.sun.fill" color={color} />
+              <MaterialCommunityIcons
+                size={28}
+                name="weather-partly-cloudy"
+                color={color}
+              />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="image"
+          options={{
+            title: "Chart",
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons
+                size={28}
+                name="chart-line"
+                color={color}
+              />
             ),
           }}
         />
