@@ -1,5 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import { DataContext } from "./_layout";
 
 export default function HistoryScreen() {
@@ -29,32 +36,86 @@ export default function HistoryScreen() {
     }
   }, [id]);
 
+  const renderItem = ({
+    item: image,
+  }: {
+    item: { date: string; url: string };
+  }) => (
+    <View style={styles.imageContainer}>
+      <Text style={styles.dateText}>
+        {new Intl.DateTimeFormat("de-DE", {
+          weekday: "long",
+          day: "numeric",
+          month: "numeric",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        }).format(new Date(image.date))}{" "}
+        Uhr
+      </Text>
+      <Image
+        source={{ uri: image.url }}
+        style={styles.image}
+        resizeMode="contain"
+      />
+    </View>
+  );
+
   if (loading) {
     return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" />
+      </View>
+    );
+  }
+
+  if (data.length === 0) {
+    return (
       <View style={styles.container}>
-        <Text>Loading...</Text>
+        <Text style={styles.infoText}>Keine Bilder verfügbar</Text>
       </View>
     );
   }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Location: {id}</Text>
-      <Text style={styles.text}>Items: {data.length}</Text>
-    </View>
+    <FlatList
+      data={data}
+      renderItem={renderItem}
+      keyExtractor={(item, index) => index.toString()}
+      contentContainerStyle={styles.container}
+    />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    flexGrow: 1,
+    backgroundColor: "#fff",
+    padding: 10,
+  },
+  imageContainer: {
+    marginBottom: 20,
+    alignItems: "center",
+  },
+  dateText: {
+    fontSize: 16,
+    color: "#666",
+    marginBottom: 5,
+  },
+  image: {
+    width: 300,
+    height: 200,
+  },
+  infoText: {
+    fontSize: 18,
+    color: "#666",
+    textAlign: "center",
+    marginTop: 20,
+  },
+  loadingContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
-  },
-  text: {
-    fontSize: 24,
-    color: "#333",
-    marginVertical: 5,
   },
 });

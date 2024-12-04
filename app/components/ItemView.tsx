@@ -33,20 +33,7 @@ export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
     <ThemedView style={styles.itemContainer}>
       <ThemedText style={styles.title}>{item.name}</ThemedText>
 
-      {item.type === "image" && (
-        <View>
-          <WebView
-            source={{ uri: item.url }}
-            style={styles.webview}
-            cacheEnabled={false}
-            originWhitelist={["*"]}
-            renderLoading={() => (
-              <ActivityIndicator color={Colors[colorScheme ?? "light"].tint} />
-            )}
-          />
-        </View>
-      )}
-      {item.type === "iframe" && (
+      {(item.type === "iframe" || item.type == "image") && (
         <View>
           <WebView
             source={{ uri: item.url }}
@@ -57,12 +44,9 @@ export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
             javaScriptEnabled={true}
             domStorageEnabled={true}
             startInLoadingState={true}
-            renderLoading={() => (
-              <ActivityIndicator color={Colors[colorScheme ?? "light"].tint} />
-            )}
             onLoad={() => {
               webviewRef.current?.injectJavaScript(`
-                document.body.style.backgroundColor = 'transparent';
+                document.body.style.backgroundColor = 'black';
               `);
             }}
             ref={webviewRef}
