@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: 300,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#ffffff",
   },
   webview: {
     width: "100%",

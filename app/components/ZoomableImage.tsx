@@ -3,7 +3,7 @@ import { StyleSheet, Image, Dimensions } from "react-native";
 import ImageZoom from "react-native-image-pan-zoom";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
-const SCREEN_HEIGHT = 300;
+const SCREEN_HEIGHT = 270;
 
 interface ZoomableImageProps {
   url: string;
@@ -35,6 +35,6 @@ const styles = StyleSheet.create({
   image: {
     width: SCREEN_WIDTH - 32,
     height: SCREEN_HEIGHT,
-    backgroundColor: "#f0f0f0",
+    backgroundColor: "#ffffff",
   },
 });
