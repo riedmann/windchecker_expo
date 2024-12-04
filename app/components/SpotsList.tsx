@@ -15,8 +15,6 @@ export default function SpotsList({ issummer = false }: SpotsListProps) {
   const [loading, setLoading] = useState(true);
   const isFocused = useIsFocused();
 
-  console.log("isfoccused", isFocused);
-
   // Initial load of spots
   useEffect(() => {
     const loadSpots = async () => {
@@ -38,8 +36,6 @@ export default function SpotsList({ issummer = false }: SpotsListProps) {
   // Load favorites when screen is focused
   useEffect(() => {
     if (isFocused) {
-      console.log("cheking favorites");
-
       loadFavorites();
     }
   }, [isFocused]);
@@ -86,7 +82,12 @@ export default function SpotsList({ issummer = false }: SpotsListProps) {
     <FlatList
       data={spots}
       keyExtractor={(item) => item.id.toString()}
-      renderItem={({ item }) => <Spot {...item} />}
+      renderItem={({ item }) => {
+        console.log("item", item);
+        console.log("favorite", favorites.has(item.id));
+
+        return <Spot {...item} isFav={favorites.has(item.id)} />;
+      }}
       contentContainerStyle={styles.container}
     />
   );

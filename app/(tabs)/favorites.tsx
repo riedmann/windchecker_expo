@@ -82,7 +82,7 @@ export default function FavoritesScreen() {
   return (
     <FlatList
       data={favoriteSpots}
-      renderItem={({ item }) => <Spot {...item} />}
+      renderItem={({ item }) => <Spot {...item} isFav={true} />}
       keyExtractor={(item) => item.id.toString()}
       contentContainerStyle={styles.container}
     />

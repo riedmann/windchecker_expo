@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { FavoritesProvider } from "./context/FavoritesContext";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -32,27 +33,29 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen
-          name="(tabs)"
-          options={{ headerShown: true, headerTitle: "Spots" }}
-        />
-        <Stack.Screen
-          name="details"
-          //@ts-ignore
-          options={({ route }) => ({
-            headerBackButtonMenuEnabled: true,
-            headerShown: true,
-            headerTitle:
-              route.params && "name" in route.params
-                ? route.params.name
-                : "Spot Details",
-          })}
-        />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+    <FavoritesProvider>
+      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+        <Stack>
+          <Stack.Screen
+            name="(tabs)"
+            options={{ headerShown: true, headerTitle: "Spots" }}
+          />
+          <Stack.Screen
+            name="details"
+            //@ts-ignore
+            options={({ route }) => ({
+              headerBackButtonMenuEnabled: true,
+              headerShown: true,
+              headerTitle:
+                route.params && "name" in route.params
+                  ? route.params.name
+                  : "Spot Details",
+            })}
+          />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+        <StatusBar style="auto" />
+      </ThemeProvider>
+    </FavoritesProvider>
   );
 }

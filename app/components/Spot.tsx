@@ -10,58 +10,41 @@ import { useRouter } from "expo-router";
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SpotData } from "@/types";
+import { useFavorites } from "../context/FavoritesContext";
 
 const Spot: React.FC<SpotData> = ({
   name,
   description,
   id,
-  isFav,
   longitude,
   latitude,
 }) => {
   const router = useRouter();
-  const [isFavorite, setIsFavorite] = useState(isFav);
-
-  useEffect(() => {
-    const checkFavorite = async () => {
-      const storedFavorites = await AsyncStorage.getItem("favorites");
-      const favorites = storedFavorites ? JSON.parse(storedFavorites) : [];
-      setIsFavorite(favorites.some((fav: any) => fav.id === id));
-    };
-
-    checkFavorite();
-  }, [id]);
+  const { favorites, toggleFavorite } = useFavorites();
+  const isFavorite = favorites.some((fav: any) => fav.id === id);
 
   const handlePress = () => {
     router.push({
       pathname: "/details",
       params: {
-        id: id,
-        name: name,
-        description: description,
-        longitude: longitude,
-        latitude: latitude,
+        id,
+        name,
+        description,
+        longitude,
+        latitude,
       },
     });
   };
 
-  const toggleFavorite = async () => {
-    try {
-      const storedFavorites = await AsyncStorage.getItem("favorites");
-      let favorites = storedFavorites ? JSON.parse(storedFavorites) : [];
-
-      if (isFavorite) {
-        favorites = favorites.filter((fav: any) => fav.id !== id);
-      } else {
-        favorites.push({ id, name, description, longitude, latitude });
-      }
-
-      await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
-      console.log("favorites", favorites);
-      setIsFavorite(!isFavorite);
-    } catch (error) {
-      console.error("Failed to toggle favorite:", error);
-    }
+  const handleToggleFavorite = () => {
+    toggleFavorite({
+      id,
+      name,
+      description,
+      longitude,
+      latitude,
+      issummer: false,
+    });
   };
 
   return (
@@ -71,7 +54,7 @@ const Spot: React.FC<SpotData> = ({
         <Text style={styles.description}>{description}</Text>
       </Pressable>
       <View style={styles.iconContainer}>
-        <TouchableOpacity onPress={toggleFavorite}>
+        <TouchableOpacity onPress={handleToggleFavorite}>
           <Ionicons
             name={isFavorite ? "heart" : "heart-outline"}
             size={24}
