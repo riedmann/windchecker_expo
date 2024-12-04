@@ -143,6 +143,8 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
   );
 };
 
+export default WeatherChart;
+
 const styles = StyleSheet.create({
   container: {
     padding: 16,

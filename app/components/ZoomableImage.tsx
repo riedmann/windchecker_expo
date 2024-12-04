@@ -10,6 +10,7 @@ interface ZoomableImageProps {
 }
 
 export const ZoomableImage: React.FC<ZoomableImageProps> = ({ url }) => {
+  const random = Math.random();
   return (
     //@ts-ignore
     <ImageZoom
@@ -18,11 +19,18 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({ url }) => {
       imageWidth={SCREEN_WIDTH - 32}
       imageHeight={SCREEN_HEIGHT}
     >
-      <Image source={{ uri: url }} style={styles.image} resizeMode="contain" />
+      <Image
+        source={{
+          uri: url + "?random=" + random,
+          cache: "reload",
+        }}
+        style={styles.image}
+        resizeMode="contain"
+      />
     </ImageZoom>
   );
 };
-
+export default ZoomableImage;
 const styles = StyleSheet.create({
   image: {
     width: SCREEN_WIDTH - 32,

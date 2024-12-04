@@ -38,6 +38,7 @@ export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
   );
 };
 
+export default ItemView;
 const styles = StyleSheet.create({
   itemContainer: {
     marginBottom: 20,
