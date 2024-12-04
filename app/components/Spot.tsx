@@ -1,18 +1,36 @@
-import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  TouchableOpacity,
+} from "react-native";
 import { useRouter } from "expo-router";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SpotData } from "@/types";
 
 const Spot: React.FC<SpotData> = ({
   name,
   description,
   id,
-  issummer,
+  isFav,
   longitude,
   latitude,
 }) => {
   const router = useRouter();
+  const [isFavorite, setIsFavorite] = useState(isFav);
+
+  useEffect(() => {
+    const checkFavorite = async () => {
+      const storedFavorites = await AsyncStorage.getItem("favorites");
+      const favorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+      setIsFavorite(favorites.some((fav: any) => fav.id === id));
+    };
+
+    checkFavorite();
+  }, [id]);
 
   const handlePress = () => {
     router.push({
@@ -27,20 +45,41 @@ const Spot: React.FC<SpotData> = ({
     });
   };
 
+  const toggleFavorite = async () => {
+    try {
+      const storedFavorites = await AsyncStorage.getItem("favorites");
+      let favorites = storedFavorites ? JSON.parse(storedFavorites) : [];
+
+      if (isFavorite) {
+        favorites = favorites.filter((fav: any) => fav.id !== id);
+      } else {
+        favorites.push({ id, name, description, longitude, latitude });
+      }
+
+      await AsyncStorage.setItem("favorites", JSON.stringify(favorites));
+      console.log("favorites", favorites);
+      setIsFavorite(!isFavorite);
+    } catch (error) {
+      console.error("Failed to toggle favorite:", error);
+    }
+  };
+
   return (
-    <Pressable onPress={handlePress}>
-      <View style={styles.container}>
-        <View style={styles.textContainer}>
-          <Text style={styles.name}>{name}</Text>
-          <Text style={styles.description}>{description}</Text>
-        </View>
-        <MaterialCommunityIcons
-          size={24}
-          name={issummer ? "white-balance-sunny" : "snowflake"}
-          color={issummer ? "#FFB800" : "#00A5FF"}
-        />
+    <View style={styles.container}>
+      <Pressable onPress={handlePress} style={styles.textContainer}>
+        <Text style={styles.name}>{name}</Text>
+        <Text style={styles.description}>{description}</Text>
+      </Pressable>
+      <View style={styles.iconContainer}>
+        <TouchableOpacity onPress={toggleFavorite}>
+          <Ionicons
+            name={isFavorite ? "heart" : "heart-outline"}
+            size={24}
+            color={isFavorite ? "red" : "gray"}
+          />
+        </TouchableOpacity>
       </View>
-    </Pressable>
+    </View>
   );
 };
 
@@ -63,6 +102,10 @@ const styles = StyleSheet.create({
   description: {
     fontSize: 14,
     color: "#646464",
+  },
+  iconContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 

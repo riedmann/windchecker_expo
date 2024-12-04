@@ -20,5 +20,6 @@ export interface SpotData {
   created_on?: string;
   longitude?: number;
   latitude?: number;
+  isFav?: boolean;
   onPress?: () => void;
 }
