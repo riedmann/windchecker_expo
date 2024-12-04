@@ -26,7 +26,7 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
           `https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=CRMvhmj2yd8oLgS3&lat=${latitude}&lon=${longitude}&windspeed=${windunit}&asl=396&format=json`
         );
         const result = await response.json();
-        console.log(result);
+
         setData(result);
       } catch (error) {
         console.error("Error fetching weather data:", error);

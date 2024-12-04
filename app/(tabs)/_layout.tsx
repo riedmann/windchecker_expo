@@ -1,6 +1,7 @@
 import { Tabs } from "expo-router";
 import React from "react";
 import { Platform } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 import { HapticTab } from "@/components/HapticTab";
 import { IconSymbol } from "@/components/ui/IconSymbol";
@@ -33,7 +34,7 @@ export default function TabLayout() {
           title: "Winter",
           headerTitle: "Winter Spots",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="house.fill" color={color} />
+            <Ionicons name="snow" size={28} color={color} />
           ),
         }}
       />
@@ -43,7 +44,7 @@ export default function TabLayout() {
           title: "Summer",
           headerTitle: "Summer Spots",
           tabBarIcon: ({ color }) => (
-            <IconSymbol size={28} name="paperplane.fill" color={color} />
+            <Ionicons name="sunny" size={28} color={color} />
           ),
         }}
       />

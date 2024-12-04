@@ -12,7 +12,6 @@ export default function ReportScreen() {
 
   // Filter for items where art is "image"
   const imageItems = data.filter((item: any) => item.art === "report");
-  console.log(imageItems);
 
   if (loading) {
     return (

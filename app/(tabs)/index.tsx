@@ -34,7 +34,7 @@ export default function SpotsScreen() {
       );
       const data = await response.json();
 
-      setSpots(data.data);
+      setSpots(data.data.filter((spot: SpotData) => spot.issummer === false));
     } catch (error) {
       console.error("Error fetching spots:", error);
     } finally {

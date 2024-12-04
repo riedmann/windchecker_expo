@@ -12,7 +12,7 @@ export default function ForecastScreen() {
 
   // Filter for items where art is "image"
   const imageItems = data.filter((item: any) => item.art === "forecast");
-  console.log(imageItems);
+
   if (loading) {
     return (
       <ThemedView style={styles.container}>
