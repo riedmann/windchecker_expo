@@ -1,12 +1,13 @@
 import { Tabs } from "expo-router";
 import React, { createContext, useEffect, useState } from "react";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useLocalSearchParams } from "expo-router";
 import { Item } from "@/types";
 
 interface DataContextType {
+  id: string;
   data: Item[];
   loading: boolean;
   location?: {
@@ -20,6 +21,7 @@ export const DataContext = createContext<DataContextType>({
   data: [],
   loading: true,
   refetch: async () => {},
+  id: "",
 });
 
 export default function DetailsLayout() {
@@ -54,6 +56,7 @@ export default function DetailsLayout() {
   return (
     <DataContext.Provider
       value={{
+        id: params.id as string,
         data,
         loading,
         location: {
@@ -132,6 +135,16 @@ export default function DetailsLayout() {
                 name="chart-line"
                 color={color}
               />
+            ),
+          }}
+        />
+        <Tabs.Screen
+          name="history"
+          options={{
+            title: "History",
+            headerTitle: "History",
+            tabBarIcon: ({ color }) => (
+              <Ionicons name="time" size={28} color={color} />
             ),
           }}
         />

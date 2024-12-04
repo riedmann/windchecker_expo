@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
-import { StyleSheet, Image, ScrollView, Dimensions } from "react-native";
-import ImageZoom from "react-native-image-pan-zoom";
-import { WebView } from "react-native-webview";
-import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
-import { DataContext } from "./_layout";
-import { ZoomableImage } from "../components/ZoomableImage";
+import { ThemedView } from "@/components/ThemedView";
+import React, { useContext } from "react";
+import { Dimensions, ScrollView, StyleSheet } from "react-native";
 import { ItemView } from "../components/ItemView";
+import { DataContext } from "./_layout";
 
 const SCREEN_WIDTH = Dimensions.get("window").width;
 const SCREEN_HEIGHT = 300; // You can adjust this value

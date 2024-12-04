@@ -1,11 +1,9 @@
-import React, { useContext } from "react";
-import { StyleSheet, Image, ScrollView } from "react-native";
-import { WebView } from "react-native-webview";
-import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
-import { DataContext } from "./_layout";
-import { ZoomableImage } from "../components/ZoomableImage";
+import { ThemedView } from "@/components/ThemedView";
+import React, { useContext } from "react";
+import { ScrollView, StyleSheet } from "react-native";
 import { ItemView } from "../components/ItemView";
+import { DataContext } from "./_layout";
 
 export default function ReportScreen() {
   const { data, loading } = useContext(DataContext);

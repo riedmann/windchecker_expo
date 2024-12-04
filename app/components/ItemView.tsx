@@ -1,22 +1,29 @@
-import React, { useState } from "react";
-import { StyleSheet, Pressable, Linking, View } from "react-native";
-import { ThemedView } from "@/components/ThemedView";
 import { ThemedText } from "@/components/ThemedText";
-import { WebView } from "react-native-webview";
-import { ZoomableImage } from "./ZoomableImage";
-import { Item } from "@/types";
-import { ImageOverlay } from "./ImageOverlay";
-import { Ionicons } from "@expo/vector-icons";
-import { Colors } from "@/constants/Colors";
+import { ThemedView } from "@/components/ThemedView";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { Item } from "@/types";
+import React, { useRef, useState } from "react";
+import {
+  ActivityIndicator,
+  Linking,
+  Pressable,
+  StyleSheet,
+  View,
+} from "react-native";
+import { WebView } from "react-native-webview";
 
 interface ItemViewProps {
   item: Item;
 }
 
+const Colors = {
+  light: { tint: "#2196F3" },
+  dark: { tint: "#ffffff" },
+};
+
 export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
-  const [isOverlayVisible, setIsOverlayVisible] = useState(false);
   const colorScheme = useColorScheme();
+  const webviewRef = useRef<WebView>(null);
 
   const handleUrlPress = () => {
     Linking.openURL(item.url);
@@ -28,30 +35,39 @@ export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
 
       {item.type === "image" && (
         <View>
-          <ZoomableImage url={item.url} />
-          <Pressable
-            style={[
-              styles.openIcon,
-              { backgroundColor: Colors[colorScheme ?? "light"].tint + "80" },
-            ]}
-            onPress={() => setIsOverlayVisible(true)}
-          >
-            <Ionicons name="open-outline" size={30} color="white" />
-          </Pressable>
-          <ImageOverlay
-            isVisible={isOverlayVisible}
-            imageUrl={item.url}
-            onClose={() => setIsOverlayVisible(false)}
+          <WebView
+            source={{ uri: item.url }}
+            style={styles.webview}
+            cacheEnabled={false}
+            originWhitelist={["*"]}
+            renderLoading={() => (
+              <ActivityIndicator color={Colors[colorScheme ?? "light"].tint} />
+            )}
           />
         </View>
       )}
-
       {item.type === "iframe" && (
-        <WebView
-          source={{ uri: item.url }}
-          style={styles.webview}
-          nestedScrollEnabled={true}
-        />
+        <View>
+          <WebView
+            source={{ uri: item.url }}
+            style={styles.webview}
+            cacheEnabled={false}
+            nestedScrollEnabled={true}
+            originWhitelist={["*"]}
+            javaScriptEnabled={true}
+            domStorageEnabled={true}
+            startInLoadingState={true}
+            renderLoading={() => (
+              <ActivityIndicator color={Colors[colorScheme ?? "light"].tint} />
+            )}
+            onLoad={() => {
+              webviewRef.current?.injectJavaScript(`
+                document.body.style.backgroundColor = 'transparent';
+              `);
+            }}
+            ref={webviewRef}
+          />
+        </View>
       )}
 
       {item.type === "Link" && (
