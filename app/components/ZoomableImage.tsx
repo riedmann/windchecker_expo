@@ -32,9 +32,15 @@ export const ZoomableImage: React.FC<ZoomableImageProps> = ({ url }) => {
 };
 export default ZoomableImage;
 const styles = StyleSheet.create({
-  image: {
-    width: SCREEN_WIDTH - 32,
+  wrapper: {
     height: SCREEN_HEIGHT,
-    backgroundColor: "#ffffff",
+    backgroundColor: "#f0f0f0",
+    borderRadius: 8,
+    overflow: "hidden",
+  },
+  image: {
+    height: SCREEN_HEIGHT,
+    backgroundColor: "#f0f0f0",
+    borderRadius: 8,
   },
 });
