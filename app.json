@@ -18,8 +18,8 @@
     },
     "android": {
       "icon": "./assets/images/icon.png",
-
-      "package": "rocks.riedmann.windchecker"
+      "package": "rocks.riedmann.windchecker",
+      "usesCleartextTraffic": true
     },
     "web": {
       "bundler": "metro",

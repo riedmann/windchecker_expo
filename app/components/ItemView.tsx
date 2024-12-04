@@ -46,7 +46,7 @@ export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
             startInLoadingState={true}
             onLoad={() => {
               webviewRef.current?.injectJavaScript(`
-                document.body.style.backgroundColor = 'black';
+                document.body.style.backgroundColor = 'transparent';
               `);
             }}
             ref={webviewRef}

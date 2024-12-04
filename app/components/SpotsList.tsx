@@ -57,7 +57,7 @@ export default function SpotsList({ issummer = false }: SpotsListProps) {
   const loadFavorites = async () => {
     try {
       const storedFavorites = await AsyncStorage.getItem("favorites");
-      console.log("storedFavorites", storedFavorites);
+
       if (storedFavorites) {
         setFavorites(
           new Set(JSON.parse(storedFavorites).map((fav: any) => fav.id))
@@ -83,9 +83,6 @@ export default function SpotsList({ issummer = false }: SpotsListProps) {
       data={spots}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => {
-        console.log("item", item);
-        console.log("favorite", favorites.has(item.id));
-
         return <Spot {...item} isFav={favorites.has(item.id)} />;
       }}
       contentContainerStyle={styles.container}

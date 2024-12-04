@@ -30,6 +30,16 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
+          title: "Favorites",
+          headerTitle: "Favorite Spots",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="heart" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="winter"
+        options={{
           title: "Winter",
           headerTitle: "Winter Spots",
           tabBarIcon: ({ color }) => (
@@ -44,16 +54,6 @@ export default function TabLayout() {
           headerTitle: "Summer Spots",
           tabBarIcon: ({ color }) => (
             <Ionicons name="sunny" size={28} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="favorites"
-        options={{
-          title: "Favorites",
-          headerTitle: "Favorite Spots",
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="heart" size={28} color={color} />
           ),
         }}
       />
