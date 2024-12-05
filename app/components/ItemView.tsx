@@ -24,6 +24,7 @@ const Colors = {
 export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
   const colorScheme = useColorScheme();
   const webviewRef = useRef<WebView>(null);
+  const [webviewError, setWebviewError] = useState(false);
 
   const handleUrlPress = () => {
     Linking.openURL(item.url);
@@ -33,7 +34,7 @@ export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
     <ThemedView style={styles.itemContainer}>
       <ThemedText style={styles.title}>{item.name}</ThemedText>
 
-      {(item.type === "iframe" || item.type == "image") && (
+      {(item.type === "iframe" || item.type == "image") && !webviewError ? (
         <View>
           <WebView
             source={{ uri: item.url }}
@@ -44,6 +45,7 @@ export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
             javaScriptEnabled={true}
             domStorageEnabled={true}
             startInLoadingState={true}
+            onError={() => setWebviewError(true)}
             onLoad={() => {
               webviewRef.current?.injectJavaScript(`
                 document.body.style.backgroundColor = 'transparent';
@@ -52,7 +54,11 @@ export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
             ref={webviewRef}
           />
         </View>
-      )}
+      ) : item.type === "iframe" || item.type == "image" ? (
+        <Pressable onPress={handleUrlPress}>
+          <ThemedText style={styles.link}>{item.url}</ThemedText>
+        </Pressable>
+      ) : null}
 
       {item.type === "Link" && (
         <Pressable onPress={handleUrlPress}>
