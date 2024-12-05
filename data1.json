@@ -1,0 +1,898 @@
+{
+  "data": [
+    {
+      "day": "friday",
+      "data": [
+        {
+          "time": "00:00",
+          "temperature": 5.17,
+          "windSpeed": 10.75,
+          "windDirection": 207
+        },
+        {
+          "time": "01:00",
+          "temperature": 5.37,
+          "windSpeed": 11.96,
+          "windDirection": 209
+        },
+        {
+          "time": "02:00",
+          "temperature": 5.77,
+          "windSpeed": 12.33,
+          "windDirection": 207
+        },
+        {
+          "time": "03:00",
+          "temperature": 6.21,
+          "windSpeed": 12.68,
+          "windDirection": 218
+        },
+        {
+          "time": "04:00",
+          "temperature": 6.66,
+          "windSpeed": 15.36,
+          "windDirection": 220
+        },
+        {
+          "time": "05:00",
+          "temperature": 7,
+          "windSpeed": 17.64,
+          "windDirection": 212
+        },
+        {
+          "time": "06:00",
+          "temperature": 7.32,
+          "windSpeed": 18,
+          "windDirection": 233
+        },
+        {
+          "time": "07:00",
+          "temperature": 7.47,
+          "windSpeed": 24.85,
+          "windDirection": 246
+        },
+        {
+          "time": "08:00",
+          "temperature": 7.59,
+          "windSpeed": 24.76,
+          "windDirection": 269
+        },
+        {
+          "time": "09:00",
+          "temperature": 7.64,
+          "windSpeed": 23.99,
+          "windDirection": 269
+        },
+        {
+          "time": "10:00",
+          "temperature": 7.68,
+          "windSpeed": 23.34,
+          "windDirection": 261
+        },
+        {
+          "time": "11:00",
+          "temperature": 7.64,
+          "windSpeed": 26.05,
+          "windDirection": 258
+        },
+        {
+          "time": "12:00",
+          "temperature": 7.47,
+          "windSpeed": 26.24,
+          "windDirection": 256
+        },
+        {
+          "time": "13:00",
+          "temperature": 7.26,
+          "windSpeed": 26.04,
+          "windDirection": 252
+        },
+        {
+          "time": "14:00",
+          "temperature": 7,
+          "windSpeed": 26.98,
+          "windDirection": 252
+        },
+        {
+          "time": "15:00",
+          "temperature": 6.65,
+          "windSpeed": 27.98,
+          "windDirection": 249
+        },
+        {
+          "time": "16:00",
+          "temperature": 6.18,
+          "windSpeed": 27.03,
+          "windDirection": 246
+        },
+        {
+          "time": "17:00",
+          "temperature": 5.66,
+          "windSpeed": 28.5,
+          "windDirection": 247
+        },
+        {
+          "time": "18:00",
+          "temperature": 5.23,
+          "windSpeed": 28.13,
+          "windDirection": 251
+        },
+        {
+          "time": "19:00",
+          "temperature": 4.88,
+          "windSpeed": 27.29,
+          "windDirection": 250
+        },
+        {
+          "time": "20:00",
+          "temperature": 4.56,
+          "windSpeed": 25.31,
+          "windDirection": 252
+        },
+        {
+          "time": "21:00",
+          "temperature": 4.26,
+          "windSpeed": 21.33,
+          "windDirection": 249
+        },
+        {
+          "time": "22:00",
+          "temperature": 3.92,
+          "windSpeed": 17.26,
+          "windDirection": 241
+        },
+        {
+          "time": "23:00",
+          "temperature": 3.52,
+          "windSpeed": 12.91,
+          "windDirection": 224
+        }
+      ]
+    },
+    {
+      "day": "saturday",
+      "data": [
+        {
+          "time": "00:00",
+          "temperature": 3.04,
+          "windSpeed": 11.55,
+          "windDirection": 218
+        },
+        {
+          "time": "01:00",
+          "temperature": 2.75,
+          "windSpeed": 10.49,
+          "windDirection": 205
+        },
+        {
+          "time": "02:00",
+          "temperature": 2.58,
+          "windSpeed": 9.93,
+          "windDirection": 206
+        },
+        {
+          "time": "03:00",
+          "temperature": 2.41,
+          "windSpeed": 8.66,
+          "windDirection": 199
+        },
+        {
+          "time": "04:00",
+          "temperature": 2.5,
+          "windSpeed": 8.77,
+          "windDirection": 202
+        },
+        {
+          "time": "05:00",
+          "temperature": 2.85,
+          "windSpeed": 9.85,
+          "windDirection": 201
+        },
+        {
+          "time": "06:00",
+          "temperature": 3.47,
+          "windSpeed": 10.55,
+          "windDirection": 206
+        },
+        {
+          "time": "07:00",
+          "temperature": 4,
+          "windSpeed": 10.66,
+          "windDirection": 201
+        },
+        {
+          "time": "08:00",
+          "temperature": 4.56,
+          "windSpeed": 11.11,
+          "windDirection": 195
+        },
+        {
+          "time": "09:00",
+          "temperature": 5.14,
+          "windSpeed": 11.45,
+          "windDirection": 197
+        },
+        {
+          "time": "10:00",
+          "temperature": 6.05,
+          "windSpeed": 10.42,
+          "windDirection": 210
+        },
+        {
+          "time": "11:00",
+          "temperature": 6.93,
+          "windSpeed": 11.85,
+          "windDirection": 229
+        },
+        {
+          "time": "12:00",
+          "temperature": 7.76,
+          "windSpeed": 13.66,
+          "windDirection": 230
+        },
+        {
+          "time": "13:00",
+          "temperature": 8.14,
+          "windSpeed": 17.03,
+          "windDirection": 231
+        },
+        {
+          "time": "14:00",
+          "temperature": 8.24,
+          "windSpeed": 18.17,
+          "windDirection": 231
+        },
+        {
+          "time": "15:00",
+          "temperature": 7.97,
+          "windSpeed": 19.79,
+          "windDirection": 227
+        },
+        {
+          "time": "16:00",
+          "temperature": 7.36,
+          "windSpeed": 20.51,
+          "windDirection": 231
+        },
+        {
+          "time": "17:00",
+          "temperature": 6.63,
+          "windSpeed": 20.68,
+          "windDirection": 232
+        },
+        {
+          "time": "18:00",
+          "temperature": 6.15,
+          "windSpeed": 20.69,
+          "windDirection": 230
+        },
+        {
+          "time": "19:00",
+          "temperature": 5.8,
+          "windSpeed": 22.3,
+          "windDirection": 235
+        },
+        {
+          "time": "20:00",
+          "temperature": 5.61,
+          "windSpeed": 21.8,
+          "windDirection": 235
+        },
+        {
+          "time": "21:00",
+          "temperature": 5.39,
+          "windSpeed": 21.07,
+          "windDirection": 236
+        },
+        {
+          "time": "22:00",
+          "temperature": 5.05,
+          "windSpeed": 20.47,
+          "windDirection": 234
+        },
+        {
+          "time": "23:00",
+          "temperature": 4.66,
+          "windSpeed": 18.42,
+          "windDirection": 230
+        }
+      ]
+    },
+    {
+      "day": "sunday",
+      "data": [
+        {
+          "time": "00:00",
+          "temperature": 4.47,
+          "windSpeed": 17.1,
+          "windDirection": 229
+        },
+        {
+          "time": "01:00",
+          "temperature": 4.3,
+          "windSpeed": 15.73,
+          "windDirection": 229
+        },
+        {
+          "time": "02:00",
+          "temperature": 4.01,
+          "windSpeed": 17.67,
+          "windDirection": 229
+        },
+        {
+          "time": "03:00",
+          "temperature": 3.65,
+          "windSpeed": 15.73,
+          "windDirection": 227
+        },
+        {
+          "time": "04:00",
+          "temperature": 3.38,
+          "windSpeed": 14.34,
+          "windDirection": 227
+        },
+        {
+          "time": "05:00",
+          "temperature": 3.2,
+          "windSpeed": 13.57,
+          "windDirection": 229
+        },
+        {
+          "time": "06:00",
+          "temperature": 3.13,
+          "windSpeed": 12.42,
+          "windDirection": 231
+        },
+        {
+          "time": "07:00",
+          "temperature": 2.95,
+          "windSpeed": 10.69,
+          "windDirection": 233
+        },
+        {
+          "time": "08:00",
+          "temperature": 2.85,
+          "windSpeed": 9.92,
+          "windDirection": 233
+        },
+        {
+          "time": "09:00",
+          "temperature": 2.84,
+          "windSpeed": 9.56,
+          "windDirection": 233
+        },
+        {
+          "time": "10:00",
+          "temperature": 3.05,
+          "windSpeed": 9.9,
+          "windDirection": 235
+        },
+        {
+          "time": "11:00",
+          "temperature": 3.3,
+          "windSpeed": 10.77,
+          "windDirection": 240
+        },
+        {
+          "time": "12:00",
+          "temperature": 3.72,
+          "windSpeed": 10.5,
+          "windDirection": 246
+        },
+        {
+          "time": "13:00",
+          "temperature": 4.17,
+          "windSpeed": 9.03,
+          "windDirection": 249
+        },
+        {
+          "time": "14:00",
+          "temperature": 4.47,
+          "windSpeed": 6.29,
+          "windDirection": 247
+        },
+        {
+          "time": "15:00",
+          "temperature": 4.41,
+          "windSpeed": 3.6,
+          "windDirection": 242
+        },
+        {
+          "time": "16:00",
+          "temperature": 3.95,
+          "windSpeed": 3.7,
+          "windDirection": 238
+        },
+        {
+          "time": "17:00",
+          "temperature": 3.43,
+          "windSpeed": 4.18,
+          "windDirection": 240
+        },
+        {
+          "time": "18:00",
+          "temperature": 3.25,
+          "windSpeed": 4.32,
+          "windDirection": 243
+        },
+        {
+          "time": "19:00",
+          "temperature": 3.31,
+          "windSpeed": 4.4,
+          "windDirection": 244
+        },
+        {
+          "time": "20:00",
+          "temperature": 3.44,
+          "windSpeed": 4.39,
+          "windDirection": 247
+        },
+        {
+          "time": "21:00",
+          "temperature": 3.57,
+          "windSpeed": 5.16,
+          "windDirection": 253
+        },
+        {
+          "time": "22:00",
+          "temperature": 3.64,
+          "windSpeed": 6.4,
+          "windDirection": 262
+        },
+        {
+          "time": "23:00",
+          "temperature": 3.56,
+          "windSpeed": 7.4,
+          "windDirection": 280
+        }
+      ]
+    },
+    {
+      "day": "monday",
+      "data": [
+        {
+          "time": "00:00",
+          "temperature": 3.24,
+          "windSpeed": 8.09,
+          "windDirection": 308
+        },
+        {
+          "time": "01:00",
+          "temperature": 2.92,
+          "windSpeed": 8.86,
+          "windDirection": 333
+        },
+        {
+          "time": "02:00",
+          "temperature": 2.56,
+          "windSpeed": 9.53,
+          "windDirection": 352
+        },
+        {
+          "time": "03:00",
+          "temperature": 2.33,
+          "windSpeed": 10.08,
+          "windDirection": 11
+        },
+        {
+          "time": "04:00",
+          "temperature": 2.09,
+          "windSpeed": 10.52,
+          "windDirection": 27
+        },
+        {
+          "time": "05:00",
+          "temperature": 2.03,
+          "windSpeed": 11,
+          "windDirection": 35
+        },
+        {
+          "time": "06:00",
+          "temperature": 1.98,
+          "windSpeed": 11.72,
+          "windDirection": 38
+        },
+        {
+          "time": "07:00",
+          "temperature": 1.85,
+          "windSpeed": 11.45,
+          "windDirection": 41
+        },
+        {
+          "time": "08:00",
+          "temperature": 1.69,
+          "windSpeed": 11.78,
+          "windDirection": 45
+        },
+        {
+          "time": "09:00",
+          "temperature": 1.68,
+          "windSpeed": 12.72,
+          "windDirection": 53
+        },
+        {
+          "time": "10:00",
+          "temperature": 2.1,
+          "windSpeed": 13.1,
+          "windDirection": 57
+        },
+        {
+          "time": "11:00",
+          "temperature": 2.56,
+          "windSpeed": 13.02,
+          "windDirection": 50
+        },
+        {
+          "time": "12:00",
+          "temperature": 2.9,
+          "windSpeed": 13.12,
+          "windDirection": 42
+        },
+        {
+          "time": "13:00",
+          "temperature": 3.08,
+          "windSpeed": 13.38,
+          "windDirection": 38
+        },
+        {
+          "time": "14:00",
+          "temperature": 3.19,
+          "windSpeed": 14.18,
+          "windDirection": 36
+        },
+        {
+          "time": "15:00",
+          "temperature": 2.98,
+          "windSpeed": 15,
+          "windDirection": 35
+        },
+        {
+          "time": "16:00",
+          "temperature": 2.52,
+          "windSpeed": 15.39,
+          "windDirection": 34
+        },
+        {
+          "time": "17:00",
+          "temperature": 1.96,
+          "windSpeed": 15.44,
+          "windDirection": 32
+        },
+        {
+          "time": "18:00",
+          "temperature": 1.64,
+          "windSpeed": 15.51,
+          "windDirection": 29
+        },
+        {
+          "time": "19:00",
+          "temperature": 1.57,
+          "windSpeed": 14.97,
+          "windDirection": 27
+        },
+        {
+          "time": "20:00",
+          "temperature": 1.6,
+          "windSpeed": 14.02,
+          "windDirection": 30
+        },
+        {
+          "time": "21:00",
+          "temperature": 1.69,
+          "windSpeed": 13.13,
+          "windDirection": 34
+        },
+        {
+          "time": "22:00",
+          "temperature": 1.71,
+          "windSpeed": 11.66,
+          "windDirection": 38
+        },
+        {
+          "time": "23:00",
+          "temperature": 1.63,
+          "windSpeed": 10.23,
+          "windDirection": 39
+        }
+      ]
+    },
+    {
+      "day": "tuesday",
+      "data": [
+        {
+          "time": "00:00",
+          "temperature": 1.46,
+          "windSpeed": 9.55,
+          "windDirection": 39
+        },
+        {
+          "time": "01:00",
+          "temperature": 1.26,
+          "windSpeed": 9.35,
+          "windDirection": 40
+        },
+        {
+          "time": "02:00",
+          "temperature": 0.96,
+          "windSpeed": 9.58,
+          "windDirection": 46
+        },
+        {
+          "time": "03:00",
+          "temperature": 0.71,
+          "windSpeed": 9.41,
+          "windDirection": 47
+        },
+        {
+          "time": "04:00",
+          "temperature": 0.5,
+          "windSpeed": 9.13,
+          "windDirection": 48
+        },
+        {
+          "time": "05:00",
+          "temperature": 0.42,
+          "windSpeed": 9.02,
+          "windDirection": 49
+        },
+        {
+          "time": "06:00",
+          "temperature": 0.36,
+          "windSpeed": 8.88,
+          "windDirection": 51
+        },
+        {
+          "time": "07:00",
+          "temperature": 0.19,
+          "windSpeed": 8.45,
+          "windDirection": 52
+        },
+        {
+          "time": "08:00",
+          "temperature": 0.03,
+          "windSpeed": 8.59,
+          "windDirection": 55
+        },
+        {
+          "time": "09:00",
+          "temperature": -0.04,
+          "windSpeed": 8.95,
+          "windDirection": 57
+        },
+        {
+          "time": "10:00",
+          "temperature": 0.21,
+          "windSpeed": 9.48,
+          "windDirection": 57
+        },
+        {
+          "time": "11:00",
+          "temperature": 0.59,
+          "windSpeed": 9.91,
+          "windDirection": 56
+        },
+        {
+          "time": "12:00",
+          "temperature": 0.92,
+          "windSpeed": 10.28,
+          "windDirection": 55
+        },
+        {
+          "time": "13:00",
+          "temperature": 1.08,
+          "windSpeed": 10.84,
+          "windDirection": 53
+        },
+        {
+          "time": "14:00",
+          "temperature": 1.13,
+          "windSpeed": 11.99,
+          "windDirection": 53
+        },
+        {
+          "time": "15:00",
+          "temperature": 0.99,
+          "windSpeed": 12.87,
+          "windDirection": 55
+        },
+        {
+          "time": "16:00",
+          "temperature": 0.68,
+          "windSpeed": 13.64,
+          "windDirection": 55
+        },
+        {
+          "time": "17:00",
+          "temperature": 0.35,
+          "windSpeed": 13.44,
+          "windDirection": 56
+        },
+        {
+          "time": "18:00",
+          "temperature": 0.17,
+          "windSpeed": 12.38,
+          "windDirection": 58
+        },
+        {
+          "time": "19:00",
+          "temperature": 0.12,
+          "windSpeed": 11.17,
+          "windDirection": 60
+        },
+        {
+          "time": "20:00",
+          "temperature": 0.22,
+          "windSpeed": 10.02,
+          "windDirection": 60
+        },
+        {
+          "time": "21:00",
+          "temperature": 0.24,
+          "windSpeed": 9.36,
+          "windDirection": 60
+        },
+        {
+          "time": "22:00",
+          "temperature": 0.13,
+          "windSpeed": 8.46,
+          "windDirection": 59
+        },
+        {
+          "time": "23:00",
+          "temperature": -0.01,
+          "windSpeed": 7.42,
+          "windDirection": 60
+        }
+      ]
+    },
+    {
+      "day": "wednesday",
+      "data": [
+        {
+          "time": "00:00",
+          "temperature": -0.09,
+          "windSpeed": 6.39,
+          "windDirection": 61
+        },
+        {
+          "time": "01:00",
+          "temperature": -0.03,
+          "windSpeed": 5.92,
+          "windDirection": 60
+        },
+        {
+          "time": "02:00",
+          "temperature": 0.42,
+          "windSpeed": 5.8,
+          "windDirection": 56
+        },
+        {
+          "time": "03:00",
+          "temperature": 0.25,
+          "windSpeed": 5.81,
+          "windDirection": 54
+        },
+        {
+          "time": "04:00",
+          "temperature": -0.06,
+          "windSpeed": 5.98,
+          "windDirection": 55
+        },
+        {
+          "time": "05:00",
+          "temperature": -0.35,
+          "windSpeed": 5.76,
+          "windDirection": 62
+        },
+        {
+          "time": "06:00",
+          "temperature": -0.63,
+          "windSpeed": 5.89,
+          "windDirection": 73
+        },
+        {
+          "time": "07:00",
+          "temperature": -0.99,
+          "windSpeed": 5.73,
+          "windDirection": 80
+        },
+        {
+          "time": "08:00",
+          "temperature": -1.24,
+          "windSpeed": 5.63,
+          "windDirection": 82
+        },
+        {
+          "time": "09:00",
+          "temperature": -1.12,
+          "windSpeed": 6.25,
+          "windDirection": 81
+        },
+        {
+          "time": "10:00",
+          "temperature": -0.63,
+          "windSpeed": 7.21,
+          "windDirection": 81
+        },
+        {
+          "time": "11:00",
+          "temperature": 0.09,
+          "windSpeed": 8.87,
+          "windDirection": 78
+        },
+        {
+          "time": "12:00",
+          "temperature": 0.78,
+          "windSpeed": 10.74,
+          "windDirection": 75
+        },
+        {
+          "time": "13:00",
+          "temperature": 1.34,
+          "windSpeed": 12.46,
+          "windDirection": 74
+        },
+        {
+          "time": "14:00",
+          "temperature": 1.63,
+          "windSpeed": 13.5,
+          "windDirection": 75
+        },
+        {
+          "time": "15:00",
+          "temperature": 1.56,
+          "windSpeed": 13.83,
+          "windDirection": 75
+        },
+        {
+          "time": "16:00",
+          "temperature": 1.05,
+          "windSpeed": 12.82,
+          "windDirection": 75
+        },
+        {
+          "time": "17:00",
+          "temperature": 0.44,
+          "windSpeed": 11.8,
+          "windDirection": 72
+        },
+        {
+          "time": "18:00",
+          "temperature": -0.06,
+          "windSpeed": 10.86,
+          "windDirection": 72
+        },
+        {
+          "time": "19:00",
+          "temperature": -0.35,
+          "windSpeed": 9.75,
+          "windDirection": 75
+        },
+        {
+          "time": "20:00",
+          "temperature": -0.54,
+          "windSpeed": 8.71,
+          "windDirection": 78
+        },
+        {
+          "time": "21:00",
+          "temperature": -0.6,
+          "windSpeed": 7.81,
+          "windDirection": 80
+        },
+        {
+          "time": "22:00",
+          "temperature": -0.6,
+          "windSpeed": 7.04,
+          "windDirection": 85
+        },
+        {
+          "time": "23:00",
+          "temperature": -0.61,
+          "windSpeed": 6.04,
+          "windDirection": 90
+        }
+      ]
+    }
+  ]
+}

@@ -59,3 +59,5 @@ export function useFavorites() {
   }
   return context;
 }
+
+export default FavoritesProvider;
