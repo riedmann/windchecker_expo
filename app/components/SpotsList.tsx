@@ -4,6 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
 import Spot from "./Spot";
 import { SpotData } from "@/types";
+import { API_URLS } from "../config/urls";
 
 interface SpotsListProps {
   issummer: boolean;
@@ -42,9 +43,7 @@ export default function SpotsList({ issummer = false }: SpotsListProps) {
 
   const fetchSpots = async () => {
     try {
-      const response = await fetch(
-        "https://api.riedmann.rocks/windchecker/items/spots?fields=*.*.*&status=published&sort=name"
-      );
+      const response = await fetch(API_URLS.SPOTS);
       const data = await response.json();
       setSpots(
         data.data.filter((spot: SpotData) => spot.issummer === issummer)

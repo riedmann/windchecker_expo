@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { DataContext } from "./_layout";
+import { API_URLS } from "../config/urls";
 
 export default function HistoryScreen() {
   const { id } = useContext(DataContext);
@@ -18,9 +19,7 @@ export default function HistoryScreen() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(
-          `https://windchecker.riedmann.rocks/api/images?name=${id}`
-        );
+        const response = await fetch(`${API_URLS.HISTORY}?name=${id}`);
         const json = await response.json();
         setData(json.images || []);
       } catch (error) {

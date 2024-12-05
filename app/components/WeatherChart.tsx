@@ -4,6 +4,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { transformWeatherData } from "@/utils/script";
 import WeatherStat from "./WeatherStat";
+import { API_URLS } from "../config/urls";
 
 interface WeatherChartProps {
   latitude: string;
@@ -23,20 +24,19 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        // Comment out the actual fetch
-        /*const response = await fetch(
-          `https://my.meteoblue.com/packages/basic-1h_basic-day?apikey=CRMvhmj2yd8oLgS3&lat=${latitude}&lon=${longitude}&windspeed=${windunit}&asl=396&format=json`
+        const response = await fetch(
+          `${API_URLS.METEOBLUE_BASE}?apikey=CRMvhmj2yd8oLgS3&lat=${latitude}&lon=${longitude}&windspeed=${windunit}&asl=396&format=json`
         );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        const result = await response.json();*/
+        const result = await response.json();
 
         // Use local data instead
-        const result = require("../../data.json");
+        //const result = require("../../data.json");
 
         let statisticData = transformWeatherData(result);
-        // console.log(JSON.stringify(statisticData, null, 2));
+
         setData(statisticData);
         setError(null);
       } catch (error) {
@@ -45,7 +45,6 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
             ? error.message
             : "Error fetching weather data";
         setError(errorMessage);
-        console.error("Error fetching weather data:", error);
       } finally {
         setLoading(false);
       }
@@ -66,6 +65,14 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
     return (
       <ThemedView style={styles.container}>
         <ThemedText>Loading weather data...</ThemedText>
+      </ThemedView>
+    );
+  }
+
+  if (error) {
+    return (
+      <ThemedView style={styles.container}>
+        <ThemedText>{error}</ThemedText>
       </ThemedView>
     );
   }

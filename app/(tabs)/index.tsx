@@ -6,6 +6,7 @@ import { ThemedText } from "@/components/ThemedText";
 
 import { SpotData } from "@/types";
 import Spot from "../components/Spot";
+import { API_URLS } from "../config/urls";
 
 export default function FavoritesScreen() {
   const [spots, setSpots] = useState<SpotData[]>([]);
@@ -34,9 +35,8 @@ export default function FavoritesScreen() {
 
   const fetchSpots = async () => {
     try {
-      const response = await fetch(
-        "https://api.riedmann.rocks/windchecker/items/spots?fields=*.*.*&status=published&sort=name"
-      );
+      const response = await fetch(API_URLS.SPOTS);
+
       const data = await response.json();
       setSpots(data.data);
     } catch (error) {

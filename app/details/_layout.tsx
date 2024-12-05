@@ -5,6 +5,7 @@ import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { useLocalSearchParams } from "expo-router";
 import { Item } from "@/types";
+import { API_URLS } from "../config/urls";
 
 interface DataContextType {
   id: string;
@@ -34,7 +35,7 @@ export default function DetailsLayout() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.riedmann.rocks/windchecker/items/item?filter[spots][eq]=${params.id}`
+          `${API_URLS.SPOT_DETAILS}?filter[spots][eq]=${params.id}`
         );
         const result = await response.json();
         result.data.location = {
@@ -66,7 +67,7 @@ export default function DetailsLayout() {
         refetch: async () => {
           try {
             const response = await fetch(
-              `https://api.riedmann.rocks/windchecker/items/item?filter[spots][eq]=${params.id}`
+              `${API_URLS.SPOT_DETAILS}?filter[spots][eq]=${params.id}`
             );
             const result = await response.json();
             result.data.location = {

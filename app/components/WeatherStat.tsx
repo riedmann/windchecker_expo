@@ -24,9 +24,9 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
     return (
       <ThemedView style={styles.headerRow}>
         <ThemedText style={[styles.cell, styles.dateCell]}>Date</ThemedText>
-        {Array.from({ length: 24 }, (_, i) => (
-          <ThemedText key={i} style={styles.cell}>
-            {i.toString().padStart(2, "0")}
+        {Array.from({ length: 14 }, (_, i) => i + 8).map((hour) => (
+          <ThemedText key={hour} style={styles.cell}>
+            {hour.toString().padStart(2, "0")}
           </ThemedText>
         ))}
       </ThemedView>
@@ -34,10 +34,7 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
   };
 
   const renderDataRows = () => {
-    if (!data || !Array.isArray(data.data)) return null;
-    data.data.map((dayData) => {
-      console.log("day", dayData);
-    });
+    if (!data || !Array.isArray(data.data)) return <Text>No data</Text>;
 
     return data.data.map((dayData, index) => {
       let key = dayData.day + index;
@@ -46,26 +43,32 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
           <ThemedText style={[styles.cell, styles.dateCell]}>
             {dayData.day.substring(0, 3) || `Day ${index + 1}`}
           </ThemedText>
-          {dayData.data.map((weatherPoint) => {
-            let textColor;
-            if (weatherPoint.windSpeed > 20) {
-              textColor = "darkgreen";
-            } else if (weatherPoint.windSpeed > 15) {
-              textColor = "green";
-            } else if (weatherPoint.windSpeed > 10) {
-              textColor = "lightgreen";
-            } else {
-              textColor = "white"; // Default color
-            }
-            return (
-              <ThemedText
-                key={weatherPoint.time}
-                style={[styles.cell, { backgroundColor: textColor }]}
-              >
-                {Math.floor(weatherPoint.windSpeed)}
-              </ThemedText>
-            );
-          })}
+          {dayData.data
+            .filter((point) => {
+              const hour = parseInt(point.time.split(":")[0]);
+              return hour >= 8 && hour <= 21;
+            })
+            .map((weatherPoint) => {
+              const roundedWindSpeed = Math.round(weatherPoint.windSpeed);
+              let backgroundColor;
+              if (roundedWindSpeed > 22) {
+                backgroundColor = "darkgreen";
+              } else if (roundedWindSpeed > 18) {
+                backgroundColor = "green";
+              } else if (roundedWindSpeed > 13) {
+                backgroundColor = "lightgreen";
+              } else {
+                backgroundColor = "white";
+              }
+              return (
+                <ThemedText
+                  key={weatherPoint.time}
+                  style={[styles.cell, { backgroundColor: backgroundColor }]}
+                >
+                  {roundedWindSpeed}
+                </ThemedText>
+              );
+            })}
         </ThemedView>
       );
     });
@@ -91,7 +94,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   title: {
-    fontSize: 18,
+    fontSize: 12,
     fontWeight: "bold",
     marginBottom: 16,
     textAlign: "center",
@@ -107,13 +110,15 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ccc",
   },
   cell: {
-    width: 30,
+    width: 20,
     padding: 4,
     textAlign: "center",
+    fontSize: 10,
   },
   dateCell: {
-    width: 80,
+    width: 30,
     fontWeight: "bold",
+    fontSize: 10,
   },
 });
 
