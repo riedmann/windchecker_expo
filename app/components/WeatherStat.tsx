@@ -50,23 +50,95 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
             })
             .map((weatherPoint) => {
               const roundedWindSpeed = Math.round(weatherPoint.windSpeed);
-              let backgroundColor;
+              const roundedTemp = Math.round(weatherPoint.temperature);
+
+              // Wind speed colors
+              let windBackground;
               if (roundedWindSpeed > 22) {
-                backgroundColor = "darkgreen";
+                windBackground = "darkgreen";
               } else if (roundedWindSpeed > 18) {
-                backgroundColor = "green";
+                windBackground = "green";
               } else if (roundedWindSpeed > 13) {
-                backgroundColor = "lightgreen";
+                windBackground = "lightgreen";
               } else {
-                backgroundColor = "white";
+                windBackground = "white";
               }
+
+              // Temperature colors
+              let tempBackground;
+              if (roundedTemp > 30) {
+                tempBackground = "#FF4444"; // Red
+              } else if (roundedTemp > 20) {
+                tempBackground = "#FFA500"; // Orange
+              } else if (roundedTemp > 10) {
+                tempBackground = "#FFFF00"; // Yellow
+              } else if (roundedTemp > 5) {
+                tempBackground = "#F5F0CD"; // Light blue
+              } else if (roundedTemp > 0) {
+                tempBackground = "#C0D6E8"; // Royal blue
+              } else if (roundedTemp > -5) {
+                tempBackground = "#2C4E80"; // Blue
+              } else {
+                tempBackground = "#00008B"; // Dark blue
+              }
+
+              const getWindDirectionArrow = (degrees: number) => {
+                // Normalize the degrees to 0-360 range and add 180 to flip the direction
+                // (since wind direction indicates where wind comes FROM)
+                degrees = (degrees + 180) % 360;
+
+                // Round to nearest 45 degrees (8 directions)
+                const dir = Math.round(degrees / 45);
+
+                // Return appropriate arrow based on direction
+                switch (dir % 8) {
+                  case 0:
+                    return "↑"; // N
+                  case 1:
+                    return "↗"; // NE
+                  case 2:
+                    return "→"; // E
+                  case 3:
+                    return "↘"; // SE
+                  case 4:
+                    return "↓"; // S
+                  case 5:
+                    return "↙"; // SW
+                  case 6:
+                    return "←"; // W
+                  case 7:
+                    return "↖"; // NW
+                  default:
+                    return "↑";
+                }
+              };
+
               return (
-                <ThemedText
-                  key={weatherPoint.time}
-                  style={[styles.cell, { backgroundColor: backgroundColor }]}
-                >
-                  {roundedWindSpeed}
-                </ThemedText>
+                <ThemedView key={weatherPoint.time} style={styles.dataCell}>
+                  <ThemedText
+                    style={[
+                      styles.cellText,
+                      { backgroundColor: windBackground },
+                    ]}
+                  >
+                    {roundedWindSpeed}
+                  </ThemedText>
+                  <ThemedText style={styles.directionText}>
+                    {getWindDirectionArrow(weatherPoint.windDirection)}
+                  </ThemedText>
+
+                  <ThemedText
+                    style={[
+                      styles.cellText,
+                      { backgroundColor: tempBackground },
+                    ]}
+                  >
+                    {roundedTemp}
+                  </ThemedText>
+                  {roundedTemp < 5 && (
+                    <ThemedText style={styles.directionText}>❄️</ThemedText>
+                  )}
+                </ThemedView>
               );
             })}
         </ThemedView>
@@ -79,8 +151,9 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
       <ScrollView horizontal showsHorizontalScrollIndicator={true}>
         <ThemedView>
           {renderHourHeaders()}
-
-          {renderDataRows()}
+          <ScrollView showsVerticalScrollIndicator={true}>
+            {renderDataRows()}
+          </ScrollView>
         </ThemedView>
       </ScrollView>
     </ThemedView>
@@ -103,22 +176,40 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+    backgroundColor: "white",
+    zIndex: 1,
   },
   row: {
     flexDirection: "row",
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
+    padding: 4,
   },
   cell: {
-    width: 20,
+    width: 25,
     padding: 4,
     textAlign: "center",
     fontSize: 10,
   },
   dateCell: {
-    width: 30,
+    width: 35,
     fontWeight: "bold",
     fontSize: 10,
+  },
+  dataCell: {
+    width: 25,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  cellText: {
+    width: "100%",
+    padding: 2,
+    textAlign: "center",
+    fontSize: 10,
+  },
+  directionText: {
+    fontSize: 10,
+    textAlign: "center",
   },
 });
 
