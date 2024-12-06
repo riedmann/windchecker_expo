@@ -12,6 +12,8 @@ interface WeatherChartProps {
   windunit?: string;
 }
 
+const USE_MOCK_DATA = false; // Toggle this to switch between API and mock data
+
 export const WeatherChart: React.FC<WeatherChartProps> = ({
   latitude,
   longitude,
@@ -24,19 +26,21 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
   useEffect(() => {
     const fetchWeatherData = async () => {
       try {
-        const response = await fetch(
-          `${API_URLS.METEOBLUE_BASE}?apikey=CRMvhmj2yd8oLgS3&lat=${latitude}&lon=${longitude}&windspeed=${windunit}&asl=396&format=json`
-        );
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+        let result;
+        if (USE_MOCK_DATA) {
+          // Use local data from root
+          result = require("../../data.json");
+        } else {
+          const response = await fetch(
+            `${API_URLS.METEOBLUE_BASE}?apikey=CRMvhmj2yd8oLgS3&lat=${latitude}&lon=${longitude}&windspeed=${windunit}&asl=396&format=json`
+          );
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          result = await response.json();
         }
-        const result = await response.json();
-
-        // Use local data instead
-        //const result = require("../../data.json");
 
         let statisticData = transformWeatherData(result);
-
         setData(statisticData);
         setError(null);
       } catch (error) {
@@ -79,6 +83,12 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
 
   return (
     <ThemedView style={styles.container}>
+      {USE_MOCK_DATA && (
+        <ThemedText style={styles.mockDataBanner}>Using Mock Data</ThemedText>
+      )}
+      {!USE_MOCK_DATA && (
+        <ThemedText style={styles.dataBanner}>Meteo Blue Data</ThemedText>
+      )}
       <WeatherStat data={data} />
     </ThemedView>
   );
@@ -97,5 +107,16 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 16,
     textAlign: "center",
+  },
+  dataBanner: {
+    textAlign: "center",
+    marginBottom: 8,
+    fontWeight: "bold",
+  },
+  mockDataBanner: {
+    color: "#ff6b6b",
+    textAlign: "center",
+    marginBottom: 8,
+    fontWeight: "bold",
   },
 });

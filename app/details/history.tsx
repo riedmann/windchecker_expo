@@ -9,6 +9,9 @@ import {
 } from "react-native";
 import { DataContext } from "./_layout";
 import { API_URLS } from "../config/urls";
+import { ReactNativeZoomableViewWithGestures } from "@openspacelabs/react-native-zoomable-view";
+
+const USE_MOCK_DATA = false; // Toggle this to switch between API and mock data
 
 export default function HistoryScreen() {
   const { id } = useContext(DataContext);
@@ -19,9 +22,16 @@ export default function HistoryScreen() {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const response = await fetch(`${API_URLS.HISTORY}?name=${id}`);
-        const json = await response.json();
-        setData(json.images || []);
+        if (USE_MOCK_DATA) {
+          // Use local mock data
+          const mockData = require("../../data.json");
+          setData(mockData.images || []);
+        } else {
+          // Use API data
+          const response = await fetch(`${API_URLS.HISTORY}?name=${id}`);
+          const json = await response.json();
+          setData(json.images || []);
+        }
       } catch (error) {
         console.error("Error fetching images:", error);
         setData([]);
@@ -52,11 +62,21 @@ export default function HistoryScreen() {
         }).format(new Date(image.date))}{" "}
         Uhr
       </Text>
-      <Image
-        source={{ uri: image.url }}
-        style={styles.image}
-        resizeMode="contain"
-      />
+      <ReactNativeZoomableViewWithGestures
+        maxZoom={3}
+        minZoom={0.5}
+        zoomStep={0.5}
+        initialZoom={1}
+        bindToBorders={true}
+        style={styles.zoomableView}
+        contentWidth={100}
+      >
+        <Image
+          source={{ uri: image.url }}
+          style={styles.image}
+          resizeMode="contain"
+        />
+      </ReactNativeZoomableViewWithGestures>
     </View>
   );
 
@@ -90,7 +110,6 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: "#fff",
-    padding: 10,
   },
   imageContainer: {
     marginBottom: 20,
@@ -101,9 +120,14 @@ const styles = StyleSheet.create({
     color: "#666",
     marginBottom: 5,
   },
+  zoomableView: {
+    width: 4000,
+    height: 250,
+    backgroundColor: "transparent",
+  },
   image: {
-    width: 300,
-    height: 200,
+    width: "100%",
+    height: "100%",
   },
   infoText: {
     fontSize: 18,

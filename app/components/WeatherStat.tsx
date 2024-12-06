@@ -54,10 +54,13 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
 
               // Wind speed colors
               let windBackground;
+              let windTextColor = "black";
               if (roundedWindSpeed > 22) {
                 windBackground = "darkgreen";
+                windTextColor = "white";
               } else if (roundedWindSpeed > 18) {
                 windBackground = "green";
+                windTextColor = "white";
               } else if (roundedWindSpeed > 13) {
                 windBackground = "lightgreen";
               } else {
@@ -66,6 +69,7 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
 
               // Temperature colors
               let tempBackground;
+              let textColor = "black";
               if (roundedTemp > 30) {
                 tempBackground = "#FF4444"; // Red
               } else if (roundedTemp > 20) {
@@ -75,9 +79,10 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
               } else if (roundedTemp > 5) {
                 tempBackground = "#F5F0CD"; // Light blue
               } else if (roundedTemp > 0) {
-                tempBackground = "#C0D6E8"; // Royal blue
+                tempBackground = "#C0D6E8"; // Royal
               } else if (roundedTemp > -5) {
-                tempBackground = "#2C4E80"; // Blue
+                tempBackground = "#2C4E80";
+                textColor = "white"; // Blue
               } else {
                 tempBackground = "#00008B"; // Dark blue
               }
@@ -118,10 +123,15 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
                   <ThemedText
                     style={[
                       styles.cellText,
-                      { backgroundColor: windBackground },
+                      { backgroundColor: windBackground, color: windTextColor },
                     ]}
                   >
                     {roundedWindSpeed}
+                    <ThemedText
+                      style={[styles.unitText, { color: windTextColor }]}
+                    >
+                      kmh
+                    </ThemedText>
                   </ThemedText>
                   <ThemedText style={styles.directionText}>
                     {getWindDirectionArrow(weatherPoint.windDirection)}
@@ -130,14 +140,17 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
                   <ThemedText
                     style={[
                       styles.cellText,
-                      { backgroundColor: tempBackground },
+                      { backgroundColor: tempBackground, color: textColor },
                     ]}
                   >
                     {roundedTemp}
+                    <ThemedText style={[styles.unitText, { color: textColor }]}>
+                      °C
+                    </ThemedText>
                   </ThemedText>
-                  {roundedTemp < 5 && (
-                    <ThemedText style={styles.directionText}>❄️</ThemedText>
-                  )}
+                  <ThemedText style={styles.unitText}>
+                    {weatherPoint.time}
+                  </ThemedText>
                 </ThemedView>
               );
             })}
@@ -150,7 +163,6 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
     <ThemedView style={styles.container}>
       <ScrollView horizontal showsHorizontalScrollIndicator={true}>
         <ThemedView>
-          {renderHourHeaders()}
           <ScrollView showsVerticalScrollIndicator={true}>
             {renderDataRows()}
           </ScrollView>
@@ -167,7 +179,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   title: {
-    fontSize: 12,
+    fontSize: 10,
     fontWeight: "bold",
     marginBottom: 16,
     textAlign: "center",
@@ -181,12 +193,14 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: "#ccc",
+
     padding: 4,
+    marginBottom: 8,
+    paddingBottom: 8,
+    alignItems: "center",
   },
   cell: {
-    width: 25,
+    width: 35,
     padding: 4,
     textAlign: "center",
     fontSize: 10,
@@ -195,11 +209,18 @@ const styles = StyleSheet.create({
     width: 35,
     fontWeight: "bold",
     fontSize: 10,
+    textAlignVertical: "center",
+    justifyContent: "center",
+    alignSelf: "center",
   },
   dataCell: {
-    width: 25,
+    width: 35,
     justifyContent: "center",
     alignItems: "center",
+    borderStyle: "solid",
+    borderWidth: 1,
+    borderColor: "#ffaaff44",
+    marginRight: 1,
   },
   cellText: {
     width: "100%",
@@ -210,6 +231,10 @@ const styles = StyleSheet.create({
   directionText: {
     fontSize: 10,
     textAlign: "center",
+  },
+  unitText: {
+    fontSize: 6,
+    marginLeft: 1,
   },
 });
 
