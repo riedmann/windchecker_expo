@@ -56,13 +56,14 @@ export const ItemView: React.FC<ItemViewProps> = ({ item }) => {
         </View>
       ) : item.type === "iframe" || item.type == "image" ? (
         <Pressable onPress={handleUrlPress}>
-          <ThemedText style={styles.link}>{item.url}</ThemedText>
+          <ThemedText style={styles.link}>url:{item.url}</ThemedText>
         </Pressable>
       ) : null}
 
       {item.type === "Link" && (
         <Pressable onPress={handleUrlPress}>
-          <ThemedText style={styles.link}>{item.url}</ThemedText>
+          <ThemedText>We have a link for you</ThemedText>
+          <ThemedText style={styles.link}> {item.url}</ThemedText>
         </Pressable>
       )}
     </ThemedView>
