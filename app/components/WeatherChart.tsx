@@ -31,9 +31,11 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
           // Use local data from root
           result = require("../../data.json");
         } else {
-          const response = await fetch(
-            `${API_URLS.METEOBLUE_BASE}?apikey=CRMvhmj2yd8oLgS3&lat=${latitude}&lon=${longitude}&windspeed=${windunit}&asl=396&format=json`
-          );
+          const response = await fetch(`${API_URLS.METEOBLUE_BASE}`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ latitude: latitude, longitude: longitude }),
+          });
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
