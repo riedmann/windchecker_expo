@@ -4,7 +4,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useIsFocused } from "@react-navigation/native";
 import Spot from "./Spot";
 import { SpotData } from "@/types";
-import { API_URLS } from "../config/urls";
+import { API_URLS } from "@/config/urls";
 
 interface SpotsListProps {
   issummer: boolean;
@@ -46,7 +46,7 @@ export default function SpotsList({ issummer = false }: SpotsListProps) {
       const response = await fetch(API_URLS.SPOTS);
       const data = await response.json();
       setSpots(
-        data.data.filter((spot: SpotData) => spot.issummer === issummer)
+        data.data.filter((spot: SpotData) => spot.issummer === issummer),
       );
     } catch (error) {
       console.error("Error fetching spots:", error);
@@ -59,7 +59,7 @@ export default function SpotsList({ issummer = false }: SpotsListProps) {
 
       if (storedFavorites) {
         setFavorites(
-          new Set(JSON.parse(storedFavorites).map((fav: any) => fav.id))
+          new Set(JSON.parse(storedFavorites).map((fav: any) => fav.id)),
         );
       } else {
         setFavorites(new Set());

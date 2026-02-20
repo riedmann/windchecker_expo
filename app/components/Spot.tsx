@@ -10,7 +10,7 @@ import { useRouter } from "expo-router";
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { SpotData } from "@/types";
-import { useFavorites } from "../context/FavoritesContext";
+import { useFavorites } from "@/context/FavoritesContext";
 
 const Spot: React.FC<SpotData> = ({
   name,

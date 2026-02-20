@@ -6,7 +6,7 @@ import { ThemedText } from "@/components/ThemedText";
 
 import { SpotData } from "@/types";
 import Spot from "../components/Spot";
-import { API_URLS } from "../config/urls";
+import { API_URLS } from "@/config/urls";
 
 export default function FavoritesScreen() {
   const [spots, setSpots] = useState<SpotData[]>([]);
@@ -24,13 +24,13 @@ export default function FavoritesScreen() {
       };
 
       loadInitialData();
-    }, [spots.length])
+    }, [spots.length]),
   );
 
   useFocusEffect(
     React.useCallback(() => {
       loadFavorites();
-    }, [])
+    }, []),
   );
 
   const fetchSpots = async () => {
@@ -49,7 +49,7 @@ export default function FavoritesScreen() {
       const storedFavorites = await AsyncStorage.getItem("favorites");
       if (storedFavorites) {
         setFavorites(
-          new Set(JSON.parse(storedFavorites).map((fav: any) => fav.id))
+          new Set(JSON.parse(storedFavorites).map((fav: any) => fav.id)),
         );
       } else {
         setFavorites(new Set());

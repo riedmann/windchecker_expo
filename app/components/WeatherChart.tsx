@@ -4,7 +4,7 @@ import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { transformWeatherData } from "@/utils/script";
 import WeatherStat from "./WeatherStat";
-import { API_URLS } from "../config/urls";
+import { API_URLS } from "@/config/urls";
 
 interface WeatherChartProps {
   latitude: string;

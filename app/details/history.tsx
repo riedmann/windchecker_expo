@@ -8,7 +8,7 @@ import {
   ActivityIndicator,
 } from "react-native";
 import { DataContext } from "./_layout";
-import { API_URLS } from "../config/urls";
+import { API_URLS } from "@/config/urls";
 import { ReactNativeZoomableViewWithGestures } from "@openspacelabs/react-native-zoomable-view";
 
 const USE_MOCK_DATA = false; // Toggle this to switch between API and mock data
