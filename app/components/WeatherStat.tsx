@@ -136,7 +136,6 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
                 weatherPoint.pictocode,
                 weatherPoint.isDaylight,
               );
-              console.log(pictogramUrl);
 
               return (
                 <ThemedView key={weatherPoint.time} style={styles.dataCell}>
@@ -172,22 +171,20 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
                     </View>
                   )}
 
-                  <ThemedText
+                  <Text
                     style={[
                       styles.cellText,
                       { backgroundColor: windBackground, color: windTextColor },
                     ]}
                   >
                     {roundedWindSpeed}
-                    <ThemedText
-                      style={[styles.unitText, { color: windTextColor }]}
-                    >
+                    <Text style={[styles.unitText, { color: windTextColor }]}>
                       kmh
-                    </ThemedText>
-                  </ThemedText>
-                  <ThemedText style={styles.directionText}>
+                    </Text>
+                  </Text>
+                  <Text style={styles.directionText}>
                     {getWindDirectionArrow(weatherPoint.windDirection)}
-                  </ThemedText>
+                  </Text>
 
                   <ThemedText
                     style={[
@@ -275,7 +272,7 @@ const styles = StyleSheet.create({
   },
   cellText: {
     width: "100%",
-    padding: 2,
+    padding: 0,
     textAlign: "center",
     fontSize: 10,
   },
@@ -289,10 +286,10 @@ const styles = StyleSheet.create({
   },
   pictogramContainer: {
     borderRadius: 4,
-    padding: 2,
-    marginBottom: 2,
-    width: 44,
-    height: 44,
+    padding: 0,
+    marginBottom: 0,
+    width: 30,
+    height: 30,
     justifyContent: "center",
     alignItems: "center",
   },
