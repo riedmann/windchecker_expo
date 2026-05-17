@@ -83,6 +83,8 @@ export const WeatherChart: React.FC<WeatherChartProps> = ({
     );
   }
 
+  console.log(data);
+
   return (
     <ThemedView style={styles.container}>
       {USE_MOCK_DATA && (

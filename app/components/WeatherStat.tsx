@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, ScrollView, Text } from "react-native";
+import { StyleSheet, ScrollView, Text, View } from "react-native";
+import { WebView } from "react-native-webview";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 
@@ -8,6 +9,8 @@ interface WeatherDataPoint {
   temperature: number; // Temperature in degrees (e.g., Celsius)
   windSpeed: number; // Wind speed in chosen units
   windDirection: number; // Wind direction in degrees
+  pictocode?: number; // Weather pictogram code
+  isDaylight?: number; // 1 for day, 0 for night
 }
 
 interface DailyWeather {
@@ -118,8 +121,57 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
                 }
               };
 
+              // Generate pictogram URL
+              const getPictogramUrl = (
+                pictocode?: number,
+                isDaylight?: number,
+              ) => {
+                if (!pictocode) return null;
+                const paddedCode = pictocode.toString().padStart(2, "0");
+                const timeOfDay = isDaylight === 1 ? "day" : "night";
+                return `https://static.meteoblue.com/website/images/picto/${paddedCode}_${timeOfDay}.svg`;
+              };
+
+              const pictogramUrl = getPictogramUrl(
+                weatherPoint.pictocode,
+                weatherPoint.isDaylight,
+              );
+              console.log(pictogramUrl);
+
               return (
                 <ThemedView key={weatherPoint.time} style={styles.dataCell}>
+                  {pictogramUrl && (
+                    <View style={styles.pictogramContainer}>
+                      <WebView
+                        source={{
+                          html: `
+                            <!DOCTYPE html>
+                            <html>
+                              <head>
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+                                <style>
+                                  body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: transparent; }
+                                  img { width: 100%; height: 100%; object-fit: contain; }
+                                </style>
+                              </head>
+                              <body>
+                                <img src="${pictogramUrl}" alt="weather" />
+                              </body>
+                            </html>
+                          `,
+                        }}
+                        style={{
+                          width: 30,
+                          height: 30,
+                          backgroundColor: "transparent",
+                        }}
+                        scrollEnabled={false}
+                        showsVerticalScrollIndicator={false}
+                        showsHorizontalScrollIndicator={false}
+                      />
+                    </View>
+                  )}
+
                   <ThemedText
                     style={[
                       styles.cellText,
@@ -193,15 +245,14 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: "row",
-
-    padding: 4,
-    marginBottom: 8,
-    paddingBottom: 8,
+    padding: 2,
+    marginBottom: 2,
+    paddingBottom: 2,
     alignItems: "center",
   },
   cell: {
     width: 35,
-    padding: 4,
+    padding: 2,
     textAlign: "center",
     fontSize: 10,
   },
@@ -214,7 +265,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   dataCell: {
-    width: 35,
+    width: 30,
     justifyContent: "center",
     alignItems: "center",
     borderStyle: "solid",
@@ -235,6 +286,15 @@ const styles = StyleSheet.create({
   unitText: {
     fontSize: 6,
     marginLeft: 1,
+  },
+  pictogramContainer: {
+    borderRadius: 4,
+    padding: 2,
+    marginBottom: 2,
+    width: 44,
+    height: 44,
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 

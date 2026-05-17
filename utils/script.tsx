@@ -24,6 +24,8 @@ export const transformWeatherData = (input) => {
       temperature: input.data_1h.temperature[index],
       windSpeed: input.data_1h.windspeed[index],
       windDirection: input.data_1h.winddirection[index],
+      pictocode: input.data_1h.pictocode[index],
+      isDaylight: input.data_1h.isdaylight[index],
     });
 
     return acc;
