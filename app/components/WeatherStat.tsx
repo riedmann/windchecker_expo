@@ -162,7 +162,7 @@ export const WeatherStat: React.FC<WeatherData> = ({ data }) => {
                         style={{
                           width: 30,
                           height: 30,
-                          backgroundColor: "transparent",
+                          backgroundColor: "#ffffff",
                         }}
                         scrollEnabled={false}
                         showsVerticalScrollIndicator={false}
